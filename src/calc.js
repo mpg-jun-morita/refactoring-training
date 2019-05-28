@@ -1,13 +1,13 @@
-const btn0 = document.getElementById('js-calc-0')
-const btn1 = document.getElementById('js-calc-1')
-const btn2 = document.getElementById('js-calc-2')
-const btn3 = document.getElementById('js-calc-3')
-const btn4 = document.getElementById('js-calc-4')
-const btn5 = document.getElementById('js-calc-5')
-const btn6 = document.getElementById('js-calc-6')
-const btn7 = document.getElementById('js-calc-7')
-const btn8 = document.getElementById('js-calc-8')
-const btn9 = document.getElementById('js-calc-9')
+import Number from "./js/Number";
+
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(number => {
+  const parentNode = document.getElementById(`number-${number}`)
+  const nubmer = new Number(number, parentNode)
+  nubmer.create();
+  nubmer.on('clickNumber', () => {
+    console.log('fire')
+  })
+});
 
 const result = document.getElementById('js-calc-result')
 const clear = document.getElementById('js-calc-clear')
@@ -74,56 +74,6 @@ clear.addEventListener('click', (e) => {
   type = ''
   waiting = false
   setResult(value)
-})
-btn0.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log(0)
-  setResult('0')
-})
-btn1.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log(1)
-  setResult('1')
-})
-btn2.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log(2)
-  setResult('2')
-})
-btn3.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log(3)
-  setResult('3')
-})
-btn4.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log(4)
-  setResult('4')
-})
-btn5.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log(5)
-  setResult('5')
-})
-btn6.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log(6)
-  setResult('6')
-})
-btn7.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log(7)
-  setResult('7')
-})
-btn8.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log(8)
-  setResult('8')
-})
-btn9.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log(9)
-  setResult('9')
 })
 
 divided.addEventListener('click', (e) => {
