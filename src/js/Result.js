@@ -13,8 +13,11 @@ export default class Result {
   }
 
   setOperator (operator) {
-    this.operator = operator;
-    this.formula = String(this.currentValue) + operator;
+    if (this.formula) {
+      this.formula += operator;
+    } else {
+      this.formula = String(this.currentValue) + operator;
+    }
     this.currentValue = 0;
   }
 
@@ -25,9 +28,10 @@ export default class Result {
   }
 
   calc () {
-    this.formula += String(this.currentValue)
-    this.resultNode.innerText = eval(this.formula);
+    this.formula += String(this.currentValue);
+    const resutl = eval(this.formula);
+    this.resultNode.innerText = resutl;
     this.currentValue = 0;
-    this.formula = '';
+    this.formula = String(resutl);
   }
 }
