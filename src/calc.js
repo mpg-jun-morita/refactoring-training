@@ -1,6 +1,7 @@
 import Number from "./js/Number";
+import Operator from "./js/Operator";
 
-[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(number => {
+Number.getNumbers().forEach(number => {
   const parentNode = document.getElementById(`number-${number}`)
   const nubmer = new Number(number, parentNode)
   nubmer.create();
@@ -9,13 +10,16 @@ import Number from "./js/Number";
   })
 });
 
+Operator.getOperators().forEach(operatorObj => {
+  const parentNode = document.getElementById(`operator-${operatorObj.key}`)
+  const operator = new Operator(operatorObj.key, operatorObj.value, parentNode);
+  operator.create();
+  operator.on('clickOperator', (operator) => {
+    console.log(operator)
+  })
+});
+
 const result = document.getElementById('js-calc-result')
-const clear = document.getElementById('js-calc-clear')
-const divided = document.getElementById('js-calc-divided')
-const multiplied = document.getElementById('js-calc-multiplied')
-const minus = document.getElementById('js-calc-minus')
-const equal = document.getElementById('js-calc-equal')
-const plus = document.getElementById('js-calc-plus')
 
 var value = 0
 var waiting = false
@@ -66,41 +70,3 @@ function calc() {
   result.innerHTML = String(resultValue)
   return resultValue
 }
-
-clear.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log('clear')
-  value = 0
-  type = ''
-  waiting = false
-  setResult(value)
-})
-
-divided.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log('divided')
-  setType('div', value)
-})
-multiplied.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log('multiplied')
-  setType('multi', value)
-})
-minus.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log('minus')
-  setType('minus', value)
-})
-plus.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log('plus')
-  setType('plus', value)
-})
-
-equal.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log('equal')
-  calc()
-  isCalc = false
-  waiting = true
-})
