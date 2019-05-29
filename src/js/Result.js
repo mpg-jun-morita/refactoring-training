@@ -1,8 +1,5 @@
-import EventEmmiteter from 'eventemitter3'
-
-export default class Result extends EventEmmiteter {
+export default class Result {
   constructor(node) {
-    super();
     this.resultNode = node
     this.currentValue = 0;
     this.resultNode.innerText = this.currentValue;
@@ -19,7 +16,6 @@ export default class Result extends EventEmmiteter {
     this.operator = operator;
     this.formula = String(this.currentValue) + operator;
     this.currentValue = 0;
-    this.resultNode.innerText = this.currentValue;
   }
 
   clear () {
