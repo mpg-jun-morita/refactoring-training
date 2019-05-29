@@ -9,7 +9,7 @@ Number.getNumbers().forEach(number => {
   const nubmer = new Number(number, parentNode)
   nubmer.create();
   nubmer.on('clickNumber', (number) => {
-    console.log(number)
+    result.set(number);
   })
 });
 
@@ -21,3 +21,4 @@ Operator.getOperators().forEach(operatorObj => {
     console.log(operator)
   })
 });
+
