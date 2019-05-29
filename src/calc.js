@@ -4,8 +4,8 @@ import Number from "./js/Number";
   const parentNode = document.getElementById(`number-${number}`)
   const nubmer = new Number(number, parentNode)
   nubmer.create();
-  nubmer.on('clickNumber', () => {
-    console.log('fire')
+  nubmer.on('clickNumber', (number) => {
+    console.log(number)
   })
 });
 

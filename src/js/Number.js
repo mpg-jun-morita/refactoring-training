@@ -2,6 +2,7 @@ import EventEmmiteter from 'eventemitter3'
 
 export default class Number extends EventEmmiteter {
   constructor(number, parentNode) {
+    super();
     this.parentNode = parentNode
     this.number = number
   }
@@ -11,7 +12,7 @@ export default class Number extends EventEmmiteter {
     numberButton.innerText = this.number
     numberButton.addEventListener('click', (e)=> {
       e.preventDefault()
-      // this.emit('clickNumber')
+      this.emit('clickNumber', this.number)
     })
     this.parentNode.appendChild(numberButton)
   }
