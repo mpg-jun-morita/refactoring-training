@@ -9,7 +9,7 @@ Number.getNumbers().forEach(number => {
   const nubmer = new Number(number, parentNode)
   nubmer.create();
   nubmer.on('clickNumber', (number) => {
-    result.set(number);
+    result.setVal(number);
   })
 });
 
@@ -18,7 +18,28 @@ Operator.getOperators().forEach(operatorObj => {
   const operator = new Operator(operatorObj.key, operatorObj.value, parentNode);
   operator.create();
   operator.on('clickOperator', (operator) => {
-    console.log(operator)
+    switch (operator) {
+      case 'plus':
+        result.setOperator("+");
+        break;
+      case 'minus':
+        result.setOperator("-");
+        break;
+      case 'multi':
+        result.setOperator("*");
+        break;
+      case 'div':
+        result.setOperator("/");
+        break;
+      case 'clear':
+        result.clear();
+        break;
+      case 'equal':
+        result.calc();
+        break;
+      default:
+        throw new Error('存在しないオペレータが選択されました。');
+    }
   })
 });
 

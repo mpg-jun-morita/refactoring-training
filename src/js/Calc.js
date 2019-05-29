@@ -15,7 +15,6 @@ export function setResult(val) {
 }
 
 export function setType(_type, value) {
-
   type = _type
   waiting = true
   if (isCalc) {
