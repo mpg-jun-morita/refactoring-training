@@ -1,9 +1,13 @@
 export default class Result {
-  constructor(node, currentValue = 0) {
+  constructor(node) {
     this.resultNode = node
-    this.currentValue = currentValue;
+    this.currentValue = 0;
     this.resultNode.innerText = this.currentValue;
     this.formula = '';
+  }
+
+  set (val) {
+    this.resultNode.innerText = val
   }
 
   get () {

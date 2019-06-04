@@ -2,9 +2,11 @@ import Number from "./js/Number";
 import Operator from "./js/Operator";
 import Result from "./js/Result";
 
+const result = new Result(document.getElementById('result'));
+
 window.addEventListener('load', () => {
   const initResult = window.localStorage.getItem('prevResult')
-  const result = new Result(document.getElementById('result'), initResult ? initResult : 0);
+  if(initResult) result.set(initResult)
 
   Number.getNumbers().forEach(number => {
     const parentNode = document.getElementById(`number-${number}`)
@@ -21,33 +23,19 @@ window.addEventListener('load', () => {
     operator.create();
     operator.on('clickOperator', (operator) => {
       switch (operator) {
-        case 'plus':
-          result.setOperator("+");
-          break;
-        case 'minus':
-          result.setOperator("-");
-          break;
-        case 'multi':
-          result.setOperator("*");
-          break;
-        case 'div':
-          result.setOperator("/");
-          break;
-        case 'clear':
-          result.clear();
-          break;
-        case 'equal':
-          result.calc();
-          break;
-        default:
-          throw new Error('存在しないオペレータが選択されました。');
+        case 'plus':  result.setOperator("+"); break;
+        case 'minus': result.setOperator("-"); break;
+        case 'multi': result.setOperator("*"); break;
+        case 'div':   result.setOperator("/"); break;
+        case 'clear': result.clear();          break;
+        case 'equal': result.calc();           break;
+        default: throw new Error('存在しないオペレータが選択されました。');
       }
     })
   });
-
-  window.addEventListener('beforeunload', () => {
-    const tmpResult = result.get();
-    window.localStorage.setItem('prevResult', tmpResult);
-  });
 })
 
+window.addEventListener('beforeunload', () => {
+  const tmpResult = result.get();
+  window.localStorage.setItem('prevResult', tmpResult);
+});
