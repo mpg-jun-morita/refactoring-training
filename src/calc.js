@@ -3,7 +3,8 @@ import Operator from "./js/Operator";
 import Result from "./js/Result";
 
 window.addEventListener('load', () => {
-  const result = new Result(document.getElementById('result'), window.localStorage.getItem('prevResult'));
+  const initResult = window.localStorage.getItem('prevResult')
+  const result = new Result(document.getElementById('result'), initResult ? initResult : 0);
 
   Number.getNumbers().forEach(number => {
     const parentNode = document.getElementById(`number-${number}`)
